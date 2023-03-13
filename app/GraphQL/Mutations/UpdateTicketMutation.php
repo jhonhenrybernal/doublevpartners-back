@@ -45,7 +45,7 @@ class UpdateTicketMutation extends Mutation
         }
         
         if (isset($args['status'])) {
-            $ticket->user = $args['status'];
+            $ticket->status = $args['status'];
         }
         $ticket->save();
 

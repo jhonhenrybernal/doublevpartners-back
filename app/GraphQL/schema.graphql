@@ -1,5 +1,26 @@
-type Mutation {
-    createTicket(usuario: String!): Ticket @field(resolver: "App\\GraphQL\\Mutations\\CreateTicketMutation")
-    updateTicket(id: Int!, usuario: String, estatus: String): Ticket @field(resolver: "App\\GraphQL\\Mutations\\UpdateTicketMutation")
-    deleteTicket(id: Int!): Ticket @field(resolver: "App\\GraphQL\\Mutations\\DeleteTicketMutation")
+
+type Ticket {
+    id: ID!
+    user: String!
+    status: String!
 }
+
+type TicketPagination {
+  data: [Ticket]!
+  total: Int!
+  per_page: Int!
+  current_page: Int!
+  last_page: Int!
+}
+
+type Query {
+  tickets(page: Int!, limit: Int!): TicketPagination!
+}
+
+type Mutation {
+  createTicket(user: String!, status: String!): Ticket!
+  updateTicket(user: String!, status: String!): Ticket!
+  deleteTicket(id: ID!): Boolean!
+}
+
+
