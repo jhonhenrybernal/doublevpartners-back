@@ -6,6 +6,9 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 
+/* Extending the Mutation class. 
+@author JHon Bernal
+*/
 class DeleteTicketMutation extends Mutation
 {
     protected $attributes = [
@@ -13,11 +16,13 @@ class DeleteTicketMutation extends Mutation
         'description' => 'Elimina un ticket existente'
     ];
 
+    /* Returning the type of the mutation. */
     public function type(): Type
     {
         return GraphQL::type('Ticket');
     }
 
+   /* Defining the arguments that the mutation will receive. */
     public function args(): array
     {
         return [
@@ -28,6 +33,8 @@ class DeleteTicketMutation extends Mutation
         ];
     }
 
+    /* The resolve method is the one that will be executed when the mutation is called. It receives the
+    root value and the arguments as parameters. */
     public function resolve($root, $args)
     {
         $ticket = Ticket::findOrFail($args['id']);

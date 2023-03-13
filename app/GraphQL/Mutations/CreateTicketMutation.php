@@ -8,6 +8,9 @@ use Rebing\GraphQL\Support\Mutation;
 use Illuminate\Support\Facades\Validator;
 use Nuwave\Lighthouse\Exceptions\ValidationException;
 
+/* Extending the Mutation class. }
+@author JHon Bernal
+*/
 class CreateTicketMutation extends Mutation
 {
     protected $attributes = [
@@ -15,11 +18,17 @@ class CreateTicketMutation extends Mutation
         'description' => 'Crea un nuevo ticket'
     ];
 
+   /**
+    * This function returns the type of the data that will be returned by the query.
+    * 
+    * @return Type The type of the object being returned.
+    */
     public function type(): Type
     {
         return GraphQL::type('Ticket');
     }
 
+   /* Defining the arguments that the mutation will receive. */
     public function args(): array
     {
         return [
@@ -34,6 +43,8 @@ class CreateTicketMutation extends Mutation
         ];
     }
 
+   /* This function is called when the mutation is executed. It receives the arguments that were passed
+   to the mutation and returns the data that will be returned by the query. */
     public function resolve($root, $args)
     {
         $ticket = new Ticket;
@@ -44,6 +55,8 @@ class CreateTicketMutation extends Mutation
         return $ticket;
     }
 
+  /* A function that is called when the mutation is executed. It receives the arguments that were
+  passed to the mutation and returns the data that will be returned by the query. */
     public function __invoke($rootValue, array $args)
     {
         $validator = Validator::make($args['input'], [

@@ -9,7 +9,7 @@ class TicketSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     *@author JHon Bernal
      * @return void
      */
     public function run()

@@ -6,6 +6,9 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query ;
 
+/* Extending the Query class. 
+@author JHon Bernal
+*/
 class TicketQuery extends Query
 {
     protected $attributes = [
@@ -13,11 +16,17 @@ class TicketQuery extends Query
         'description' => 'Consulta un ticket por ID'
     ];
 
+   /**
+    * This function returns a list of Ticket types.
+    * 
+    * @return Type A list of Ticket objects
+    */
     public function type(): Type
     {
         return Type::listOf(GraphQL::type('Ticket'));
     }
 
+   /* Defining the arguments that the query will receive. */
     public function args(): array
     {
         return [
@@ -32,6 +41,7 @@ class TicketQuery extends Query
         ];
     }
 
+    /* The function that will be called when the query is executed. */
     public function resolve($root, $args)
     {
         $page = $args['page'] ?? 1;

@@ -5,6 +5,9 @@ use App\Models\Ticket;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
+/* Extending the GraphQLType class.
+@author JHon Bernal
+*/
 class TicketType extends GraphQLType
 {
     protected $attributes = [
@@ -13,6 +16,7 @@ class TicketType extends GraphQLType
         'model' => Ticket::class
     ];
 
+    /* Defining the fields that will be available in the GraphQL API. */
     public function fields(): array
     {
         return [
