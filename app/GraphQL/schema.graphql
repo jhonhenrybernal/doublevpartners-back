@@ -1,0 +1,5 @@
+type Mutation {
+    createTicket(usuario: String!): Ticket @field(resolver: "App\\GraphQL\\Mutations\\CreateTicketMutation")
+    updateTicket(id: Int!, usuario: String, estatus: String): Ticket @field(resolver: "App\\GraphQL\\Mutations\\UpdateTicketMutation")
+    deleteTicket(id: Int!): Ticket @field(resolver: "App\\GraphQL\\Mutations\\DeleteTicketMutation")
+}
